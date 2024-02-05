@@ -1,237 +1,188 @@
-// let summ = 0;
-// let iter = 0;
+// const arrNums = [];
 
-// while (true) {
-//     let num = prompt('Введите число, 0 или пустую троку');
-
-//     if (num === '' || Number(num) === 0) break;
-//     if (isNaN(num)) {
-//         alert('Введено не число, повторите ввод');
-//         continue;
-//     }
-
-//     summ += Number(num);
-//     iter += 1;
+// while (1) {
+//     let num = prompt('Введите число');
+//     if (num === '') break;
+//     arrNums.push(+num);
 // }
 
-// console.log('Сумма: ' + summ);
-// console.log('Средне арифметическое: ' + summ / iter);
+// console.log(arrNums);
 
-// let str = '4 98 4 6 1 32 4 65 4 3 5 7 89 7 10 1 36 8 57';
-// let buf = '';
-// let min = Infinity;
-// let max = -Infinity;
-
-// for (let i = 0; i < str.length; i++) {
-//     if (str[i] !== ' ') {
-//         buf += str[i]
-//     } else {
-//         if (min > Number(buf)) min = Number(buf);
-//         if (max < Number(buf)) max = Number(buf);
-//         buf = '';
-//     }
-// }
-
-// console.log(min, max);
-
-// let arr = str.split(' ').map(item => +item);
-// console.log(Math.min(...arr), Math.max(...arr));
-
-// let n = prompt('Введите число');
-// let l = n.length;
-// let summ = 0;
-// let rev = '';
-
-// for (let i = 0; i < n.length; i++){
-//     summ += +n[i]; //Number(n[i])
-// }
-// for (let i = n.length - 1; i > 0; i--){
-//     rev += n[i];
-// }
-
-// console.log('Исходное число: ' + n + ', цифр числе: ' + l + ', сумма: ' + summ + ', обратный порядок: ' + rev);
-
-/**
- * push
- * pop
- * shift
- * unshift
- * indexOf
- * lastIndexOf
- * fill
- * slice
- * splice
- *
- */
-
-// let arr = [12, 22, 11, 4, 1, 32, 123, 54, 667, 90, 9, 111];
-
-// arr.sort(function (a, b) {
-//     return b - a;
+// arrNums.sort(function(a, b){
+//     return a - b;
 // });
 
-// console.log(arr);
+// console.log(arrNums);
 
-// const arr2 = [];
-
-// arr2[0] = arr;
-
-// arr2[2] = 0;
-
-// console.log(arr2);
-
-// let a = 5;
-// let b = 10;
-
-// console.log(a, b);
-
-// [a, b] = [b, a];
-
-// console.log(a, b);
-
-// let matrix = [
-//     [0, 1, 2],
-//     [3, 4, 5],
-//     [6, 7, 8],
-//     [0, 3, 6],
-//     [1, 4, 7],
-//     [2, 5, 8],
-//     [0, 4, 8],
-//     [2, 4, 6],
-// ];
-
-// for (let i = 0; i < matrix.length; i++) {
-//     for (let j = 0; j < matrix[i].length; j++) {
-//         if (j === matrix[i].length - 1) {
-//             document.write("<strong>" + matrix[i][j] + "</strong>");
-//         } else {
-//             document.write(matrix[i][j]); // matrix[i] => ([0, 1, 2])[j]
-//         }
-//     }
-//     document.write("<br/>");
-// }
-
-// let arr3 = [, , , , , , , 3, 4, 5, , , ,];
+// let a = [5, 9, 21, , , 9, 78, , , , 6];
 // let count = 0;
 
-// for (let i = 0; i < arr3.length; i++) {
-//     if (!arr3[i]){
-//         count++
-//     }
+// for (let i = 0; i < a.length; i++){
+//     if (a[i] === undefined) count += 1;
 // }
 
 // console.log(count);
 
-// let arr4 = [
-//     [1, 2, 3],
-//     [4, 5, 6],
-//     [7, 8, 9]
-// ]
+// let arr = [48,9,0,4,21,2,1,0,8,84,76,8,4, 0, 13,2]; //[1,8,0,13,76,8,7,0,22,0,2,3,2]
+// let fIndex = arr.indexOf(0);
+// let lIndex = arr.lastIndexOf(0);
+// let summ = 0;
 
-// let rez = new Array(arr4.length).fill([]);
+// for (let i = fIndex; i < lIndex; i++){
+//     summ += arr[i];
+// }
 
-// for (let i = 0; i < arr4[0].length; i++) {
-//     for (let j = 0; j < arr4.length; j++){
-//         rez[i][j] = arr4[j][i];
+// console.log(summ);
+
+// let h = +prompt('Введите высоту пирамиды');
+
+// for (let i = 1; i < h; i++){
+//     let sp = '';
+//     let p = '';
+
+//     for (let j = 0; j < i * 2 - 1; j++){
+//         p += '^';
+//     }
+
+//     for (let j = 0; j < h - i; j++){
+//         sp += ' ';
+//     }
+
+//     document.write('<pre>' + sp + p + '</pre>');
+//     document.write('<pre>' + (' ').repeat(h - i) + ('^').repeat(i * 2 - 1) + '</pre>');
+// }
+
+// IIFE
+
+// const makeCounter = function () {
+//     let counter = 0;
+
+//     return function () {
+//         return counter++;
 //     }
 // }
 
-// console.log(rez);
+// const counter1 = makeCounter();
+// const counter2 = makeCounter();
 
-// let t1 = [1, 2, 3];
-// let t2 = t1;
+// console.log(counter1());
+// console.log(counter1());
+// console.log(counter1());
+// console.log(counter2());
+// console.log(counter2());
+// console.log(counter2());
 
-// console.log(t2);
-// t1.push(4);
-// console.log(t2);
-
-// console.log(f2(1000, 23424));
-
-// function functionName (a, b) {
-//     console.log(a + b);
+// function fib(num) {
+//     if (num <= 1) return num;
+//     else return fib(num - 1) + fib(num - 2);
 // }
 
-// function f2 (a, b) {
-//     return a + b;
-// }
+// console.log(fib(100));
 
-// const f3 = function(){
-//     return 'Hello world';
-// }
+// const memoize = function (fn) {
+//     let cache = {};
+//     return function (...args) {
+//         let n = args[0];
+//         if (n in cache) {
+//             return cache[n];
+//         } else {
+//             let result = fn(n);
+//             cache[n] = result;
+//             return result;
+//         }
+//     };
+// };
 
-// console.log(f3());
+// const fib2 = memoize(function (num) {
+//     if (num <= 1) return num;
+//     else return fib2(num - 1) + fib2(num - 2);
+// });
 
+// console.log(fib2(100));
 
-//IIFE
+// const f1 = function (...a) {
+//     console.log(arguments);
+//     return a;
+// };
 
-// (function (){
-//     let functionVariable = 35;
-//     console.log(functionVariable);
-// })();
+// const f2 = (...a) => {
+//     return a;
+// };
 
+//() => operation
 
-// const f4 = function(str){
+/**
+ * Стрелочная функция не имеет arguments, this, super
+ */
 
-//     const f = function(newStr) {
-//         str = newStr;
+// const arF1 = () => false; // const arF1 = () => {return false};
+
+// console.log(arF1());
+
+// const arF2 = (x) => x ** x;
+
+// console.log(arF2(5));
+
+// const arF3 = (a, b) => a + b;
+
+// console.log(arF3(5, 6));
+
+// const a = function () {
+//     console.log(this);
+// };
+
+// const b = () => console.log(this);
+
+// let arr = [132, 23, 345, 23, 4, 23];
+
+// arr.sort((a, b) => a - b);
+
+// let newArr = arr.map((item, i) => item * i);
+
+// console.log(newArr);
+
+// function arrayMap (arr, fn){
+//     let newArr = []
+//     for (let i = 0; i < arr.length; i++){
+//         newArr.push(fn(arr[i], i, arr));
 //     }
-
-//     return [str, f];
+//     return newArr;
 // }
 
-// const [userName, setUserName] = f4('Test');
+// let na = arrayMap(arr, (item, i) => item * i);
 
-// console.log(userName);
+// console.log(na);
 
-// function isTrue (num) {
-//     if (num >= 0) return true;
-//     else return false;
-// }
+let arr = [5, 9, 21, , , 9, 78, , , , 6];
 
-// function getRandimNum (min, max) {
-//     return Math.floor(Math.random() * (max - min) + min);
-// }
+let summ = arr.reduce((acc, item, i) => ({...acc, [i]: item}), {});// let summ = arr.reduce((acc, item, i) => Object.assign(acc, {[i]: item}), {});
 
-// function getArray (n, min, max) {
-//     let arr = [];
-//     for (let i = 0; i < n; i++){
-//         let num = getRandimNum(min, max);
-//         arr.push(num);
-//     }
-//     return arr;
-// }
+console.log(summ);
 
-// let arr = getArray(1000, -100, 100);
-// let numPos = [], numNeg = [];
+function helloWorld(){
 
-// for (let i = 0; i < arr.length; i++){
-//     if (isTrue(arr[i])) {
-//         numPos.push(arr[i]);
-//     } else {
-//         numNeg.push(arr[i]);
-//     }
-// }
-
-// console.log(numPos);
-// console.log(numNeg);
-//(0 .. 1)
-
-let arr = [];
-let l = 1000, min = -100, max = 100
-for (let i = 0; i < 1000; i++) {
-    let num = Math.floor(Math.random() * (max - min) + min);
-    arr.push(num);
 }
 
-let numPos = [], numNeg = [];
+let a = helloWorld;
 
-for (let i = 0; i < arr.length; i++){
-    if (arr[i] >= 0) {
-        numPos.push(arr[i]);
-    } else {
-        numNeg.push(arr[i]);
-    }
-}
+console.log(a.name);
 
-console.log(numPos);
-console.log(numNeg);
+let b = ([]).map.apply('abracadabra', [function(i){
+    return i
+}]);
+
+console.log(b);
+
+// let b = ('abracadabra').map(i => i);
+// console.log(b);
+
+let ps = document.getElementsByTagName('p');
+
+console.log(ps);
+
+let texts = ([]).map.call(ps, i => i.innerText);
+console.log(texts);
+
+let strMap = ([]).map.bind('abracadabra');
+
+console.log(strMap(i => i.toUpperCase()));
