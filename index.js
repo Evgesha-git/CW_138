@@ -1,188 +1,149 @@
-// const arrNums = [];
-
-// while (1) {
-//     let num = prompt('Введите число');
-//     if (num === '') break;
-//     arrNums.push(+num);
-// }
-
-// console.log(arrNums);
-
-// arrNums.sort(function(a, b){
-//     return a - b;
-// });
-
-// console.log(arrNums);
-
-// let a = [5, 9, 21, , , 9, 78, , , , 6];
-// let count = 0;
-
-// for (let i = 0; i < a.length; i++){
-//     if (a[i] === undefined) count += 1;
-// }
-
-// console.log(count);
-
-// let arr = [48,9,0,4,21,2,1,0,8,84,76,8,4, 0, 13,2]; //[1,8,0,13,76,8,7,0,22,0,2,3,2]
-// let fIndex = arr.indexOf(0);
-// let lIndex = arr.lastIndexOf(0);
-// let summ = 0;
-
-// for (let i = fIndex; i < lIndex; i++){
-//     summ += arr[i];
-// }
-
-// console.log(summ);
-
-// let h = +prompt('Введите высоту пирамиды');
-
-// for (let i = 1; i < h; i++){
-//     let sp = '';
-//     let p = '';
-
-//     for (let j = 0; j < i * 2 - 1; j++){
-//         p += '^';
-//     }
-
-//     for (let j = 0; j < h - i; j++){
-//         sp += ' ';
-//     }
-
-//     document.write('<pre>' + sp + p + '</pre>');
-//     document.write('<pre>' + (' ').repeat(h - i) + ('^').repeat(i * 2 - 1) + '</pre>');
-// }
-
-// IIFE
-
-// const makeCounter = function () {
-//     let counter = 0;
-
-//     return function () {
-//         return counter++;
-//     }
-// }
-
-// const counter1 = makeCounter();
-// const counter2 = makeCounter();
-
-// console.log(counter1());
-// console.log(counter1());
-// console.log(counter1());
-// console.log(counter2());
-// console.log(counter2());
-// console.log(counter2());
-
-// function fib(num) {
-//     if (num <= 1) return num;
-//     else return fib(num - 1) + fib(num - 2);
-// }
-
-// console.log(fib(100));
-
-// const memoize = function (fn) {
-//     let cache = {};
-//     return function (...args) {
-//         let n = args[0];
-//         if (n in cache) {
-//             return cache[n];
-//         } else {
-//             let result = fn(n);
-//             cache[n] = result;
-//             return result;
+// const makeArray = function(min, max) {
+//     let arr = [];
+    
+//     if (min < max) {
+//         for (let i = min; i <= max; i++){
+//             arr.push(i);
 //         }
-//     };
-// };
+//     } else {
+//         for (let i = min; i >= max; i--){
+//             arr.push(i);
+//         }
+//     }
 
-// const fib2 = memoize(function (num) {
-//     if (num <= 1) return num;
-//     else return fib2(num - 1) + fib2(num - 2);
-// });
+//     return arr;
+// }
 
-// console.log(fib2(100));
+// const showArray = function(arr){
+//     console.log(arr);
+// }
 
-// const f1 = function (...a) {
-//     console.log(arguments);
-//     return a;
-// };
+// showArray(makeArray(40, 10));
 
-// const f2 = (...a) => {
-//     return a;
-// };
+// const pyramid = (h, marker = null) => {
+//     for (let i = 1; i <= h; i++){
+//         let s = '';
+//         for (let j = 0; j < i; j++){
+//             s += marker ? marker : i;
+//             /**
+//              * if (marker){
+//              *  s += marker
+//              * } else {
+//              *  s += i
+//              * }
+//              */
+//         }
 
-//() => operation
+//         document.write(s + '<br>');
+//     }
+// }
+
+// const fib = num => num <= 1 ? num : fib(num - 1) + fib(num - 2);
+
+// const fibArr = function () {
+//     let rez = [];
+//     let n = 0;
+//     while (1) {
+//         let numFib = fib(n);
+//         n++;
+//         if (numFib <= 1000) {
+//             rez.push(numFib);
+//         } else {
+//             break;
+//         }
+//     }
+
+//     return rez;
+// }
+
+// console.log(fibArr());
+
+// const bCard = function (name, seconName, lastName, group) {
+//     let title = 'Домашняя работа: «Функции»';
+//     let subTitle = 'Выполнил: студент гр. ' + group;
+//     let fio = `${name} ${seconName} ${lastName}`;
+
+//     let maxLength = Math.max(title.length, subTitle.length, fio.length);
+
+//     const f = (str, num) => {
+//         for (let i = str.length; i < num; i++){
+//             str += ' '
+//         }
+//         return `* ${str} *`;
+//     }
+
+//     title = f(title, maxLength);
+//     subTitle = f(subTitle, maxLength);
+//     fio = f(fio, maxLength);
+
+//     let rm = ('*').repeat(maxLength + 4);
+
+//     console.log(`${rm}\n${title}\n${subTitle}\n${fio}\n${rm}`);
+// }
+
+// bCard('Иван', 'Иванов', 'Иванович', 'FE_138');
+
+// let s = 'abracadabra';
+// console.log(s);
+// s[0] = 'A';
+// s = s.replace('a', 'A');
+// console.log(s);
+
+// const toUpperFirst = str => str[0].toUpperCase() + str.slice(1);
+
+// console.log(toUpperFirst('string'));
+
+// console.log(('abcd').at(-1));
+
+// let index = ('A').charAt();
+
+// console.log(String.fromCharCode(index + 4));
+
+// /**
+//  * @param {string} email 
+//  */
+// function isEmail (email) {
+//     let regExp = new RegExp('^[a-z]{1}[a-z0-9\-_\.]{1,}@[a-z]{1}[a-z0-9]+\.[a-z]{2,12}', 'g');
+//     let regExp2 = /^[a-z]{1}[a-z0-9\-_\.]{1,}@[a-z]{1}[a-z0-9]+\.[a-z]{2,12}/g;
+
+//     return [regExp.test(email), regExp2.test(email)];
+// }
+
+// console.log(isEmail('a234sdf-sf@mail.ru'));
+// console.log(isEmail('2erf@gmail2.test'));
+// console.log(isEmail('sdfs23!@mail.ru'));
 
 /**
- * Стрелочная функция не имеет arguments, this, super
+ * * - элемент может встречяаться в строке неограниченное количество раз и 0 раз
+ * + сопоставление один и более раз /a+/ a, aa, aaa, aaaa, ... b
+ * ? - 0 или 1 раз
  */
 
-// const arF1 = () => false; // const arF1 = () => {return false};
+/**
+ * ^[a-z]{1}[a-z0-9\-_\.]{1,}@[a-z]{1}[a-z0-9]+\.[a-z]{2,12}
+ * ^ - начало строки
+ * [a-z]{1} - любой символ из диавпазона a..z только 1 раз
+ * [a-z0-9\-_\.]{1,} | [a-z0-9]+ - либой символ из диапозона 1 и более раз
+ * [a-z]{2,12} - символ из диапазона от 2 до 12 включений
+ * \ - символ экранирования
+ */
 
-// console.log(arF1());
-
-// const arF2 = (x) => x ** x;
-
-// console.log(arF2(5));
-
-// const arF3 = (a, b) => a + b;
-
-// console.log(arF3(5, 6));
-
-// const a = function () {
-//     console.log(this);
-// };
-
-// const b = () => console.log(this);
-
-// let arr = [132, 23, 345, 23, 4, 23];
-
-// arr.sort((a, b) => a - b);
-
-// let newArr = arr.map((item, i) => item * i);
-
-// console.log(newArr);
-
-// function arrayMap (arr, fn){
-//     let newArr = []
-//     for (let i = 0; i < arr.length; i++){
-//         newArr.push(fn(arr[i], i, arr));
-//     }
-//     return newArr;
+// /**
+//  * 
+//  * @param {string} str 
+//  */
+// const testRegExp = (str) => {
+//     const regTest = /([A-Za-z]+)\s([a-z\s]+,)/g;
+//     const group = regTest.exec(str);
+//     return group;
 // }
 
-// let na = arrayMap(arr, (item, i) => item * i);
+// console.log(testRegExp('Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, voluptas!'));
 
-// console.log(na);
+let date = new Date('01 01, 70 0:00:00 ');
+console.log(date);
+let newDate = date.getTime() + 8000;
+date.setTime(newDate);
+console.log(date);
 
-let arr = [5, 9, 21, , , 9, 78, , , , 6];
-
-let summ = arr.reduce((acc, item, i) => ({...acc, [i]: item}), {});// let summ = arr.reduce((acc, item, i) => Object.assign(acc, {[i]: item}), {});
-
-console.log(summ);
-
-function helloWorld(){
-
-}
-
-let a = helloWorld;
-
-console.log(a.name);
-
-let b = ([]).map.apply('abracadabra', [function(i){
-    return i
-}]);
-
-console.log(b);
-
-// let b = ('abracadabra').map(i => i);
-// console.log(b);
-
-let ps = document.getElementsByTagName('p');
-
-console.log(ps);
-
-let texts = ([]).map.call(ps, i => i.innerText);
-console.log(texts);
-
-let strMap = ([]).map.bind('abracadabra');
-
-console.log(strMap(i => i.toUpperCase()));
+console.log(Date.now());
