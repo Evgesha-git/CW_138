@@ -1,149 +1,182 @@
-// const makeArray = function(min, max) {
-//     let arr = [];
+const formateDate = (date) => {
+    const dateExp = /([0-9]{4})-([0-9]{2})-([0-9]{2})/g;
+    return date.replace(dateExp, "$3/$2/$1");
+};
+
+const parceUrl = (url) => {
+    const regExp = /(https?:\/\/[0-9]?[a-z][a-z0-9]+(?:\.[a-z0-9]+)\.[a-z]{2,11})(\/.+\/(?:[^\?\s])+)?(\?[^#]+)?(#\w+)?/gi;
+    let group = regExp.exec(url);
+    return [...group].filter((item, index) => (index !== 0 ? item : null));
+};
+
+let arr = [1, 2, 3];
+
+const lamp = {
+    status: false,
+    // power: 60,
+    voltage: 220,
+    toggle: function () {
+        this.status = !this.status;
+        console.log(this);
+        return this.status ? "Лампа включена" : "Лампа выключена";
+    },
+};
+
+Object.defineProperty(lamp, "power", {
+    // value: 60,
+    // writable: false,
+    enumerable: false,
+    configurable: true,
+    get: function () {
+        return power;
+    },
+    set: (val) => {
+        if (val > 0) {
+            power = val;
+        }
+    },
+});
+
+function Lamp(power, voltage, cost) {
+    this.status = false;
+    this.cost = cost; //цена за время работ в часах
+    this.time = 0;
+    this.timerId = null;
+    // this._power = power;
+    // this._voltage = voltage;
+    // let self = this;
+
+    this.toogle = function () {
+        this.status = !this.status;
+        if (!this.status){
+            clearInterval(this.timerId);
+        } else {
+            this.timer();
+        }
+        return this.status ? "Лампа включена" : "Лампа выключена";
+    };
+
+    this.timer = () => {
+        this.timerId = setInterval(() => {
+            this.time += 1;
+        }, 1000);
+    }
+
+    this.getCost = () => {
+        return this.cost * (parseFloat(this.power) * (this.time / 3600));
+    }
+
+    this.info = function () {
+        return `Статус: ${this.status}, мощьность: ${this.power}, напряжение: ${this.voltage}, порачено денег на работу лампы: ${this.getCost()}`;
+    };
+
+    // this.getPower = function () {
+    //     return power;
+    // };
+
+    // this.setPower = function (val) {
+    //     if (val > 0) {
+    //         power = val;
+    //     }
+    //     return this;
+    // };
+
+    // this.getVoltage = function () {
+    //     return voltage;
+    // };
+
+    // this.setVoltage = function (val) {
+    //     if (val > 0) {
+    //         voltage = val;
+    //     }
+    //     return this;
+    // };
+
+    // this.test = function () {
+    //     console.log(this);
+    //     setTimeout(privateMethod, 3000);
+    // };
     
-//     if (min < max) {
-//         for (let i = min; i <= max; i++){
-//             arr.push(i);
-//         }
-//     } else {
-//         for (let i = min; i >= max; i--){
-//             arr.push(i);
-//         }
+    Object.defineProperties(this, {
+        power:{
+            enumerable: false,
+            configurable: false,
+            set: (val) => {
+                if (val > 0){
+                    power = val;
+                }
+            },
+            get: () => `${power}W`
+        },
+        voltage: {
+            enumerable: false,
+            configurable: false,
+            set: (val) => {
+                if (val > 0) {
+                    voltage = val
+                }
+            },
+            get: () => `${voltage}V`
+        }
+    });
+
+    // function privateMethod() {
+    //     console.log(self.getPower());
+    // }
+
+    // const privateMethod = () => {
+    //     console.log(this.getPower());
+    // };
+
+    Lamp.counter++;
+}
+
+// class Lamp2 {
+//     constructor(power, voltage){
+//         this.status = false;
+//         this._power = power;
+//         this._voltage = voltage;
 //     }
 
-//     return arr;
-// }
+//     set power (val){
+//         this._power = val;
+//     }
 
-// const showArray = function(arr){
-//     console.log(arr);
-// }
-
-// showArray(makeArray(40, 10));
-
-// const pyramid = (h, marker = null) => {
-//     for (let i = 1; i <= h; i++){
-//         let s = '';
-//         for (let j = 0; j < i; j++){
-//             s += marker ? marker : i;
-//             /**
-//              * if (marker){
-//              *  s += marker
-//              * } else {
-//              *  s += i
-//              * }
-//              */
-//         }
-
-//         document.write(s + '<br>');
+//     get power() {
+//         return this._power;
 //     }
 // }
 
-// const fib = num => num <= 1 ? num : fib(num - 1) + fib(num - 2);
+Lamp.counter = 0;
+Lamp.getCounter = function () {
+    return Lamp.counter;
+};
 
-// const fibArr = function () {
-//     let rez = [];
-//     let n = 0;
-//     while (1) {
-//         let numFib = fib(n);
-//         n++;
-//         if (numFib <= 1000) {
-//             rez.push(numFib);
-//         } else {
-//             break;
-//         }
-//     }
+const lamp40 = new Lamp(40, 220, 1);
+const lamp10 = new Lamp(10, 220, 1);
+const lamp100 = new Lamp(100, 220, 1);
+const lamp4000 = new Lamp(4000, 220, 1);
+const lamp80 = new Lamp(80, 220, 1);
 
-//     return rez;
-// }
+// ('string').split('').reverse().join(' ').toUpperCase();
 
-// console.log(fibArr());
-
-// const bCard = function (name, seconName, lastName, group) {
-//     let title = 'Домашняя работа: «Функции»';
-//     let subTitle = 'Выполнил: студент гр. ' + group;
-//     let fio = `${name} ${seconName} ${lastName}`;
-
-//     let maxLength = Math.max(title.length, subTitle.length, fio.length);
-
-//     const f = (str, num) => {
-//         for (let i = str.length; i < num; i++){
-//             str += ' '
-//         }
-//         return `* ${str} *`;
-//     }
-
-//     title = f(title, maxLength);
-//     subTitle = f(subTitle, maxLength);
-//     fio = f(fio, maxLength);
-
-//     let rm = ('*').repeat(maxLength + 4);
-
-//     console.log(`${rm}\n${title}\n${subTitle}\n${fio}\n${rm}`);
-// }
-
-// bCard('Иван', 'Иванов', 'Иванович', 'FE_138');
-
-// let s = 'abracadabra';
-// console.log(s);
-// s[0] = 'A';
-// s = s.replace('a', 'A');
-// console.log(s);
-
-// const toUpperFirst = str => str[0].toUpperCase() + str.slice(1);
-
-// console.log(toUpperFirst('string'));
-
-// console.log(('abcd').at(-1));
-
-// let index = ('A').charAt();
-
-// console.log(String.fromCharCode(index + 4));
-
-// /**
-//  * @param {string} email 
-//  */
-// function isEmail (email) {
-//     let regExp = new RegExp('^[a-z]{1}[a-z0-9\-_\.]{1,}@[a-z]{1}[a-z0-9]+\.[a-z]{2,12}', 'g');
-//     let regExp2 = /^[a-z]{1}[a-z0-9\-_\.]{1,}@[a-z]{1}[a-z0-9]+\.[a-z]{2,12}/g;
-
-//     return [regExp.test(email), regExp2.test(email)];
-// }
-
-// console.log(isEmail('a234sdf-sf@mail.ru'));
-// console.log(isEmail('2erf@gmail2.test'));
-// console.log(isEmail('sdfs23!@mail.ru'));
 
 /**
- * * - элемент может встречяаться в строке неограниченное количество раз и 0 раз
- * + сопоставление один и более раз /a+/ a, aa, aaa, aaaa, ... b
- * ? - 0 или 1 раз
+ * status: boolean
+ * evalCode: string
+ * result: number
+ * setEvalCode: (str: string) => void
+ * getResult: () => void
+ * show: () => number
  */
 
 /**
- * ^[a-z]{1}[a-z0-9\-_\.]{1,}@[a-z]{1}[a-z0-9]+\.[a-z]{2,12}
- * ^ - начало строки
- * [a-z]{1} - любой символ из диавпазона a..z только 1 раз
- * [a-z0-9\-_\.]{1,} | [a-z0-9]+ - либой символ из диапозона 1 и более раз
- * [a-z]{2,12} - символ из диапазона от 2 до 12 включений
- * \ - символ экранирования
+ * status: boolean
+ * a: number
+ * b: number
+ * op: string
+ * result: number
+ * setEvalCode: (a, b, op) => void
+ * getResult: () => void
+ * show: () => number 
  */
-
-// /**
-//  * 
-//  * @param {string} str 
-//  */
-// const testRegExp = (str) => {
-//     const regTest = /([A-Za-z]+)\s([a-z\s]+,)/g;
-//     const group = regTest.exec(str);
-//     return group;
-// }
-
-// console.log(testRegExp('Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, voluptas!'));
-
-let date = new Date('01 01, 70 0:00:00 ');
-console.log(date);
-let newDate = date.getTime() + 8000;
-date.setTime(newDate);
-console.log(date);
-
-console.log(Date.now());
