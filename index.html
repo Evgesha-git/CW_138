@@ -1,34 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <script src="index.js"></script>
+
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>JavaScript</title>
         <style>
-            pre{
-                margin: 0;
-                padding: 0;
+            .active {
+                color: red;
+                background: #7c7c7c;
+            }
+            .hiden {
+                display: none;
             }
         </style>
     </head>
     <body>
-        <div id="root"></div>
-        <button onclick="a()">1</button>
-        <button onclick="b()">2</button>
-        <p>Lorem, ipsum dolor.</p>
-        <p>Harum, laborum placeat?</p>
-        <p>Mollitia, quas sequi.</p>
-        <p>Nemo, nulla! Assumenda.</p>
-        <p>Ea, deserunt culpa.</p>
-        <p>Voluptates, eveniet animi.</p>
-        <p>Aliquam, nesciunt! Autem.</p>
-        <p>Fugit, ipsam natus?</p>
-        <p>Commodi, numquam labore.</p>
-        <p>Velit, perspiciatis ratione?</p>
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dignissimos, voluptas!</p>
-        <input type="date" name="" id="">
+        <div id="root">
+            <div id="item1">Lorem ipsum dolor sit amet.</div>
+        </div>
+        <p class="item">Lorem ipsum dolor sit amet.</p>
+        <p class="item">Asperiores cupiditate consectetur sit! Temporibus?</p>
+        <p class="item">Veniam corporis qui nesciunt saepe.</p>
+        <p class="item">Enim deserunt nostrum distinctio nobis.</p>
+        <p class="item note">Praesentium quia esse reprehenderit ullam!</p>
+        <div class="itemLink"><a href="">Lorem, ipsum.</a></div>
+        <div class="itemLink"><a href="">Commodi, consequuntur.</a></div>
+        <div class="itemLink"><a href="">Culpa, est.</a></div>
+        <div class="itemLink"><a href="">Magni, optio.</a></div>
+        <div class="itemLink"><a href="">Quidem, sint!</a></div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Lorem.</th>
+                    <th>Nulla.</th>
+                    <th>Est.</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Lorem.</td>
+                    <td>Eaque.</td>
+                    <td>Obcaecati.</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>Lorem.</td>
+                    <td>Nostrum!</td>
+                    <td>Aliquid!</td>
+                </tr>
+            </tfoot>
+        </table>
+        <div class="images"><img alt="" src="https://via.placeholder.com/50/f1a1d1" /></div>
+        <div class="images"><img alt="" src="https://via.placeholder.com/50/f2a2d2" /></div>
+        <div class="images"><img alt="" src="https://via.placeholder.com/50/f3a3d3" /></div>
+        <div class="paren">
+            <div class="child">
+                <div class="child1">
+                    <div class="child2">Lorem, ipsum dolor.</div>
+                    <div class="chold3">Lorem ipsum dolor sit.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hiden">
+            <form action="">
+                <input type="text" name="" id="" />
+                <button type="submit">send</button>
+            </form>
+        </div>
     </body>
-
-    <script src="index.js"></script>
-
 </html>

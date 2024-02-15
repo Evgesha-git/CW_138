@@ -1,182 +1,160 @@
-const formateDate = (date) => {
-    const dateExp = /([0-9]{4})-([0-9]{2})-([0-9]{2})/g;
-    return date.replace(dateExp, "$3/$2/$1");
-};
+window.addEventListener("load", () => {
+    // load DOMContentLoaded
+    console.log("Документ загружен");
+    const root = document.getElementById("root");
+    const root2 = document.querySelector("#root");
 
-const parceUrl = (url) => {
-    const regExp = /(https?:\/\/[0-9]?[a-z][a-z0-9]+(?:\.[a-z0-9]+)\.[a-z]{2,11})(\/.+\/(?:[^\?\s])+)?(\?[^#]+)?(#\w+)?/gi;
-    let group = regExp.exec(url);
-    return [...group].filter((item, index) => (index !== 0 ? item : null));
-};
+    // console.log(root);
+    // console.log(root2);
 
-let arr = [1, 2, 3];
+    const items = document.getElementsByClassName("item");
+    const items2 = document.querySelectorAll(".item");
 
-const lamp = {
-    status: false,
-    // power: 60,
-    voltage: 220,
-    toggle: function () {
-        this.status = !this.status;
-        console.log(this);
-        return this.status ? "Лампа включена" : "Лампа выключена";
-    },
-};
+    // console.log(items);
+    // console.log(items2);
 
-Object.defineProperty(lamp, "power", {
-    // value: 60,
-    // writable: false,
-    enumerable: false,
-    configurable: true,
-    get: function () {
-        return power;
-    },
-    set: (val) => {
-        if (val > 0) {
-            power = val;
-        }
-    },
-});
-
-function Lamp(power, voltage, cost) {
-    this.status = false;
-    this.cost = cost; //цена за время работ в часах
-    this.time = 0;
-    this.timerId = null;
-    // this._power = power;
-    // this._voltage = voltage;
-    // let self = this;
-
-    this.toogle = function () {
-        this.status = !this.status;
-        if (!this.status){
-            clearInterval(this.timerId);
-        } else {
-            this.timer();
-        }
-        return this.status ? "Лампа включена" : "Лампа выключена";
-    };
-
-    this.timer = () => {
-        this.timerId = setInterval(() => {
-            this.time += 1;
-        }, 1000);
-    }
-
-    this.getCost = () => {
-        return this.cost * (parseFloat(this.power) * (this.time / 3600));
-    }
-
-    this.info = function () {
-        return `Статус: ${this.status}, мощьность: ${this.power}, напряжение: ${this.voltage}, порачено денег на работу лампы: ${this.getCost()}`;
-    };
-
-    // this.getPower = function () {
-    //     return power;
-    // };
-
-    // this.setPower = function (val) {
-    //     if (val > 0) {
-    //         power = val;
-    //     }
-    //     return this;
-    // };
-
-    // this.getVoltage = function () {
-    //     return voltage;
-    // };
-
-    // this.setVoltage = function (val) {
-    //     if (val > 0) {
-    //         voltage = val;
-    //     }
-    //     return this;
-    // };
-
-    // this.test = function () {
-    //     console.log(this);
-    //     setTimeout(privateMethod, 3000);
-    // };
-    
-    Object.defineProperties(this, {
-        power:{
-            enumerable: false,
-            configurable: false,
-            set: (val) => {
-                if (val > 0){
-                    power = val;
-                }
-            },
-            get: () => `${power}W`
-        },
-        voltage: {
-            enumerable: false,
-            configurable: false,
-            set: (val) => {
-                if (val > 0) {
-                    voltage = val
-                }
-            },
-            get: () => `${voltage}V`
-        }
-    });
-
-    // function privateMethod() {
-    //     console.log(self.getPower());
+    // for(let key in items){
+    //     console.log(items[key]);
     // }
 
-    // const privateMethod = () => {
-    //     console.log(this.getPower());
-    // };
+    // items2.forEach(item => {
+    //     console.log(item);
+    // })
 
-    Lamp.counter++;
-}
+    // console.log(window.history);
 
-// class Lamp2 {
-//     constructor(power, voltage){
-//         this.status = false;
-//         this._power = power;
-//         this._voltage = voltage;
-//     }
+    /**
+     * textNode - не имеют потомком
+     * elementNode - может иметь потомков (теги)
+     */
 
-//     set power (val){
-//         this._power = val;
-//     }
+    /**
+     * Методы для поиска
+     * getElementById
+     * getElementsByTagName
+     * getElementsByClassName
+     * getElementsByName
+     * querySelector
+     * querySelectorAll
+     * closest
+     */
 
-//     get power() {
-//         return this._power;
-//     }
-// }
+    const child = document.querySelector(".child2");
 
-Lamp.counter = 0;
-Lamp.getCounter = function () {
-    return Lamp.counter;
-};
+    console.log(child.closest(".child3"));
 
-const lamp40 = new Lamp(40, 220, 1);
-const lamp10 = new Lamp(10, 220, 1);
-const lamp100 = new Lamp(100, 220, 1);
-const lamp4000 = new Lamp(4000, 220, 1);
-const lamp80 = new Lamp(80, 220, 1);
+    items2.forEach((item) => {
+        // item.style.fontSize = '40px';
+        item.style.cssText = `
+        font-size: 26px;
+        color: blue;
+    `;
+        item.classList.add("new-class");
+    });
 
-// ('string').split('').reverse().join(' ').toUpperCase();
+    /**
+     * Методы classList
+     * add - добавление имени класса
+     * remove - удаление имени класса
+     * toggle - если нет переданного имени класса - то добавляет, иначе - удаляет
+     * contain - проверка на наичие класса
+     */
 
+    const newItems = [...items].filter((item) => !item.classList.contains("note"));
+    console.log(newItems);
 
-/**
- * status: boolean
- * evalCode: string
- * result: number
- * setEvalCode: (str: string) => void
- * getResult: () => void
- * show: () => number
- */
+    /**
+     * get/set
+     * innerText - позволяет работать только с текстовым содержимым
+     * innerHTML - позволяет работать с любым содержимым (HTML)
+     */
 
-/**
- * status: boolean
- * a: number
- * b: number
- * op: string
- * result: number
- * setEvalCode: (a, b, op) => void
- * getResult: () => void
- * show: () => number 
- */
+    /**
+     * Навигация по DOM дереву
+     * children - потомки-элементы
+     * childNode - все потомки
+     * firstChild - первый потомок (в.т.ч. и текстовый узел)
+     * firstElementChild - первый потомок элемент
+     * lastChild
+     * lastElementChild
+     * parentNode - родитель
+     * parentElement - родитель
+     * nextSibling - следуюший соседний узел
+     * nextElementSibling - следующий соседний элемент
+     * previousSibling
+     * previousElementSibling
+     */
+
+    const link1 = document.links[0].parentElement;
+    const link2 = document.links[1].parentElement;
+
+    console.log(link1.innerText);
+    console.log(link2.innerHTML);
+
+    link1.innerText = `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, cum.</p>`;
+    link2.innerHTML += `<a href=""><img src="https://via.placeholder.com/120" alt="" /></a>`;
+
+    // document.body.innerHTML = '';
+
+    const p = document.createElement("p");
+    p.classList.add("item");
+    p.innerText = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, eligendi.`;
+    p.setAttribute("data-test", "2h342k5");
+    p.style.cssText = `
+        font-size: 40px;
+        text-transform: uppercase;
+    `;
+
+    root.insertBefore(p, document.getElementById("item1"));
+
+    const hiden = document.querySelector(".hiden").children[0].cloneNode(true);
+
+    root.insertBefore(hiden, p);
+
+    hiden.remove();
+
+    /**
+     * append - добавить несколько дочерних элементов
+     * appendChild - добавить один дочерний элемент
+     * inserBefore - добавить дочерний жлемент перед другим (item.insertBefore(newElement, refElement))
+     * cloneNode - копировать элемент
+     * removeChild - удалить потомка
+     */
+
+    /**
+     * @typedef TProps
+     * @type {object}
+     * @property {string} tagName
+     * @property {string[]} classes
+     * @property {(string | HTMLElement)} content
+     * @typedef TAtributes
+     * @type {object}
+     * @property {TAtributes[]} atributes
+     * @param { TProps } props
+     * @returns {HTMLElement}
+     */
+
+    const createElement = (props) => {
+        // {tagName, classes, content, atributes: [{attr, text}]}
+        
+        const elem = document.createElement(props.tagName);
+        if (props.classes && props.classes.length) {
+            props.classes.forEach((className) => elem.classList.add(className));
+        }
+        if (props.content) {
+            if (typeof props.content === "string") {
+                elem.innerHTML = props.content;
+            } else {
+                elem.append(props.content);
+            }
+        }
+        if (props.atributes) {
+            props.atributes.forEach((atribute) => elem.setAttribute(atribute.attr, atribute.text));
+        }
+
+        return elem;
+    };
+
+    const newElem = createElement({ tagName: "p", classes: ["test1", "test2", "test3"], content: p, atributes: [{ attr: "data-text", text: "24k5h32" }] });
+    document.body.append(newElem);
+});
