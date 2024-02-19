@@ -1,75 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <script src="index.js"></script>
-
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>JavaScript</title>
         <style>
-            .active {
-                color: red;
-                background: #7c7c7c;
+            .item{
+                width: 200px;
+                height: 200px;
+                border: 1px solid;
             }
-            .hiden {
-                display: none;
+            body{
+                height: 100vh;
+            }
+            .tooltip{
+                background: rgba(255, 255, 0, 0.433);
+                cursor: pointer;
+                position: relative;
+            }
+            .item1{
+                width: 500px;
+                height: 500px;
+                background: red;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .item2{
+                width: 300px;
+                height: 300px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: blue;
+            }
+            .item3{
+                width: 100px;
+                height: 100px;
+                background: yellow;
             }
         </style>
     </head>
     <body>
-        <div id="root">
-            <div id="item1">Lorem ipsum dolor sit amet.</div>
-        </div>
-        <p class="item">Lorem ipsum dolor sit amet.</p>
-        <p class="item">Asperiores cupiditate consectetur sit! Temporibus?</p>
-        <p class="item">Veniam corporis qui nesciunt saepe.</p>
-        <p class="item">Enim deserunt nostrum distinctio nobis.</p>
-        <p class="item note">Praesentium quia esse reprehenderit ullam!</p>
-        <div class="itemLink"><a href="">Lorem, ipsum.</a></div>
-        <div class="itemLink"><a href="">Commodi, consequuntur.</a></div>
-        <div class="itemLink"><a href="">Culpa, est.</a></div>
-        <div class="itemLink"><a href="">Magni, optio.</a></div>
-        <div class="itemLink"><a href="">Quidem, sint!</a></div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Lorem.</th>
-                    <th>Nulla.</th>
-                    <th>Est.</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Lorem.</td>
-                    <td>Eaque.</td>
-                    <td>Obcaecati.</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr>
-                    <td>Lorem.</td>
-                    <td>Nostrum!</td>
-                    <td>Aliquid!</td>
-                </tr>
-            </tfoot>
-        </table>
-        <div class="images"><img alt="" src="https://via.placeholder.com/50/f1a1d1" /></div>
-        <div class="images"><img alt="" src="https://via.placeholder.com/50/f2a2d2" /></div>
-        <div class="images"><img alt="" src="https://via.placeholder.com/50/f3a3d3" /></div>
-        <div class="paren">
-            <div class="child">
-                <div class="child1">
-                    <div class="child2">Lorem, ipsum dolor.</div>
-                    <div class="chold3">Lorem ipsum dolor sit.</div>
-                </div>
+        <button id="b1">Start</button>
+        <button id="b2">Stop</button>
+        <div class="item"></div>
+        <form action="">
+            <input type="text" value="">
+            <button type="submit">Add</button>
+        </form>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, veritatis.</p>
+        <p>Deserunt sequi inventore cupiditate deleniti! Earum harum itaque libero facere?</p>
+        <p>Labore soluta vel fugit ipsa architecto impedit magnam. Voluptates, alias.</p>
+        <p>Architecto dicta nesciunt distinctio, autem minus placeat dolore a illo.</p>
+        <p>Nobis reprehenderit cum minima aspernatur esse aperiam impedit placeat nihil.</p>
+        <p>Laborum iste, quisquam doloribus accusamus quibusdam minus sequi expedita perspiciatis.</p>
+        <p>Odio reprehenderit at ad quaerat quod explicabo modi consequatur nesciunt.</p>
+        <p>Vitae nesciunt recusandae obcaecati accusantium eos, ipsum hic laboriosam molestiae.</p>
+        <p>Corrupti quidem, fuga deleniti quod modi nobis assumenda veniam minima!</p>
+        <p>Consectetur necessitatibus cum eos, eius expedita quis officia repellat cumque!</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, molestias?</p>
+        <p>Vel, illum quos ut deleniti totam nobis optio nesciunt fuga.</p>
+        <p>Dolorum iste at quae omnis <span class="tooltip">alias asperiores</span> placeat voluptatem dicta.</p>
+        <p>Maxime facilis consequatur voluptatibus in. Accusantium nisi provident commodi autem.</p>
+        <p>Vel nisi aliquid assumenda nesciunt? Quaerat sequi tempora dolor officia?</p>
+        <p>Amet culpa nam aspernatur, odio possimus quis corrupti non harum!</p>
+        <p>Asperiores eum vel sequi qui doloribus nam. Recusandae, facilis harum.</p>
+        <p>Dolores fuga hic quasi odio vero asperiores nulla ullam eveniet!</p>
+        <p>Quos totam ad illum assumenda commodi consequatur architecto ut expedita!</p>
+        <p>Architecto, ab exercitationem. Rem quos repudiandae tempora blanditiis suscipit ducimus?</p>
+        <p>Blanditiis repellat repellendus ipsa cum placeat accusantium fuga rem quis?</p>
+        <p>Aspernatur corporis sequi ipsum, dolorem perspiciatis accusantium iusto assumenda qui.</p>
+        <p>Quae tempore earum fuga provident, animi assumenda optio beatae autem.</p>
+        <p>Quibusdam facilis consequatur dolore voluptatibus sint qui ducimus deserunt. Tempora!</p>
+        <p>Expedita temporibus cupiditate, iusto at saepe pariatur blanditiis et officia!</p>
+        <p>Obcaecati officia id ipsam laudantium unde vel amet quas deserunt.</p>
+        <p>Asperiores praesentium sapiente vitae similique suscipit corrupti aspernatur quo non?</p>
+        <p>Eius illo quam voluptates animi nam consectetur provident inventore saepe.</p>
+        <p>Amet id debitis suscipit laboriosam itaque minus asperiores perferendis et.</p>
+        <p>Dolores id itaque recusandae iure tempora, dicta explicabo ipsam nam!</p>
+        <div class="item1">
+            <div class="item2">
+                <div class="item3"></div>
             </div>
         </div>
-
-        <div class="hiden">
-            <form action="">
-                <input type="text" name="" id="" />
-                <button type="submit">send</button>
-            </form>
-        </div>
     </body>
+    <script src="./index.js"></script>
 </html>

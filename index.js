@@ -1,160 +1,149 @@
-window.addEventListener("load", () => {
-    // load DOMContentLoaded
-    console.log("Документ загружен");
-    const root = document.getElementById("root");
-    const root2 = document.querySelector("#root");
+const but1 = document.getElementById("b1");
+const but2 = document.getElementById("b2");
+const item = document.querySelector(".item");
+let timerId = null;
 
-    // console.log(root);
-    // console.log(root2);
+const timer = () => {
+    if (item.innerHTML === "") {
+        item.innerHTML = 0;
+    } else {
+        item.innerHTML = +item.innerHTML + 1;
+    }
+    timerId = setTimeout(() => timer(), 1000);
+};
 
-    const items = document.getElementsByClassName("item");
-    const items2 = document.querySelectorAll(".item");
+const handler = function () {
+    timerId = setTimeout(() => timer(), 1000);
+    console.log(timerId);
+};
 
-    // console.log(items);
-    // console.log(items2);
+but1.onclick = handler;
 
-    // for(let key in items){
-    //     console.log(items[key]);
-    // }
+but2.addEventListener("click", function () {
+    if (timerId) clearTimeout(timerId);
+});
+// but2.addEventListener("click", () => {
+//     console.log(this);
+// });
+// but2.addEventListener("click", function () {
+//     console.log(this);
+// });
 
-    // items2.forEach(item => {
-    //     console.log(item);
-    // })
+// window.addEventListener('beforeunload', () => {
+//     alert('')
+// });
 
-    // console.log(window.history);
+// but2.removeEventListener('click', )
 
-    /**
-     * textNode - не имеют потомком
-     * elementNode - может иметь потомков (теги)
-     */
+/**
+ * Типы событий
+ * Мыши - click, dblclick, onwhell, contextmenu, mouseover, mousedown, mouseup, mousemove
+ * Клавиатуры - keyup, keydown, keypress
+ * DOM - load, DOMContentLoaded, resize, error, beforeunload/unload
+ * Форм и элеметов управления - blur, change, focus, invalid, select, submit, input
+ * события CSS
+ * Drag and drop
+ * События буфера обмена
+ * медиа события
+ */
 
-    /**
-     * Методы для поиска
-     * getElementById
-     * getElementsByTagName
-     * getElementsByClassName
-     * getElementsByName
-     * querySelector
-     * querySelectorAll
-     * closest
-     */
+document.querySelector("input").addEventListener("focus", () => {
+    console.log("Элемент в фокусе");
+});
+document.querySelector("input").addEventListener("blur", () => {
+    console.log("Элемент потерял фокус");
+});
 
-    const child = document.querySelector(".child2");
+document.querySelector("input").addEventListener("change", () => {
+    console.log(document.querySelector("input").value);
+});
 
-    console.log(child.closest(".child3"));
+const input = document.querySelector("input");
 
-    items2.forEach((item) => {
-        // item.style.fontSize = '40px';
-        item.style.cssText = `
-        font-size: 26px;
-        color: blue;
+input.addEventListener("input", () => {
+    input.value = input.value.toUpperCase();
+});
+
+input.addEventListener("invalid", () => {
+    console.log("Статус инвалид");
+});
+
+document.querySelector("form").addEventListener("submit", (event) => {
+    event.preventDefault();
+    console.log(event);
+    console.log("Валидация формы");
+});
+
+document.body.addEventListener("click", (event) => {
+    console.log(`X: ${event.pageX}, Y: ${event.pageY}`);
+    console.log(`X: ${event.clientX}, Y: ${event.clientY}`);
+});
+
+const createTooltip = () => {
+    const item = document.createElement("div");
+    item.style.cssText = `
+        width: 400px;
+        height: 200px;
+        border: 1px solid;
+        position: absolute;
+        background: #fff;
     `;
-        item.classList.add("new-class");
+    item.innerHTML = `
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, corporis?</p>
+        <p>Minima voluptatibus fugit ducimus in magni nam voluptates accusamus minus.</p>
+        <p>Repudiandae in hic consequuntur cum quos sequi, earum laborum atque.</p>
+    `;
+    return item;
+};
+
+const testTooltip = () => {
+    let item = null;
+    const tooltipItem = document.querySelector(".tooltip");
+    const height = window.innerHeight;
+
+    tooltipItem.addEventListener("mouseover", (event) => {
+        item = createTooltip();
+        let pos = event.clientY + 220;
+        // console.log(pos, event.clientY, item);
+        if (pos < height) {
+            item.style.top = `20px`;
+            tooltipItem.append(item);
+        } else {
+            item.style.bottom = `20px`;
+            tooltipItem.append(item);
+        }
     });
 
-    /**
-     * Методы classList
-     * add - добавление имени класса
-     * remove - удаление имени класса
-     * toggle - если нет переданного имени класса - то добавляет, иначе - удаляет
-     * contain - проверка на наичие класса
-     */
-
-    const newItems = [...items].filter((item) => !item.classList.contains("note"));
-    console.log(newItems);
-
-    /**
-     * get/set
-     * innerText - позволяет работать только с текстовым содержимым
-     * innerHTML - позволяет работать с любым содержимым (HTML)
-     */
-
-    /**
-     * Навигация по DOM дереву
-     * children - потомки-элементы
-     * childNode - все потомки
-     * firstChild - первый потомок (в.т.ч. и текстовый узел)
-     * firstElementChild - первый потомок элемент
-     * lastChild
-     * lastElementChild
-     * parentNode - родитель
-     * parentElement - родитель
-     * nextSibling - следуюший соседний узел
-     * nextElementSibling - следующий соседний элемент
-     * previousSibling
-     * previousElementSibling
-     */
-
-    const link1 = document.links[0].parentElement;
-    const link2 = document.links[1].parentElement;
-
-    console.log(link1.innerText);
-    console.log(link2.innerHTML);
-
-    link1.innerText = `<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, cum.</p>`;
-    link2.innerHTML += `<a href=""><img src="https://via.placeholder.com/120" alt="" /></a>`;
-
-    // document.body.innerHTML = '';
-
-    const p = document.createElement("p");
-    p.classList.add("item");
-    p.innerText = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis, eligendi.`;
-    p.setAttribute("data-test", "2h342k5");
-    p.style.cssText = `
-        font-size: 40px;
-        text-transform: uppercase;
-    `;
-
-    root.insertBefore(p, document.getElementById("item1"));
-
-    const hiden = document.querySelector(".hiden").children[0].cloneNode(true);
-
-    root.insertBefore(hiden, p);
-
-    hiden.remove();
-
-    /**
-     * append - добавить несколько дочерних элементов
-     * appendChild - добавить один дочерний элемент
-     * inserBefore - добавить дочерний жлемент перед другим (item.insertBefore(newElement, refElement))
-     * cloneNode - копировать элемент
-     * removeChild - удалить потомка
-     */
-
-    /**
-     * @typedef TProps
-     * @type {object}
-     * @property {string} tagName
-     * @property {string[]} classes
-     * @property {(string | HTMLElement)} content
-     * @typedef TAtributes
-     * @type {object}
-     * @property {TAtributes[]} atributes
-     * @param { TProps } props
-     * @returns {HTMLElement}
-     */
-
-    const createElement = (props) => {
-        // {tagName, classes, content, atributes: [{attr, text}]}
-        
-        const elem = document.createElement(props.tagName);
-        if (props.classes && props.classes.length) {
-            props.classes.forEach((className) => elem.classList.add(className));
+    tooltipItem.addEventListener("mouseleave", () => {
+        if (item) {
+            item.remove();
         }
-        if (props.content) {
-            if (typeof props.content === "string") {
-                elem.innerHTML = props.content;
-            } else {
-                elem.append(props.content);
-            }
-        }
-        if (props.atributes) {
-            props.atributes.forEach((atribute) => elem.setAttribute(atribute.attr, atribute.text));
-        }
+    });
+};
 
-        return elem;
-    };
+testTooltip();
 
-    const newElem = createElement({ tagName: "p", classes: ["test1", "test2", "test3"], content: p, atributes: [{ attr: "data-text", text: "24k5h32" }] });
-    document.body.append(newElem);
+const item1 = document.querySelector('.item1');
+const item2 = document.querySelector('.item2');
+const item3 = document.querySelector('.item3');
+
+item1.addEventListener('click', () => {
+    alert('Погружение item1');
+}, true);
+item1.addEventListener('click', () => {
+    alert('Всплытие item1');
+});
+item2.addEventListener('click', (event) => {
+    // event.stopPropagation();
+    alert('Погружение item2');
+}, true);
+item2.addEventListener('click', (event) => {
+    // event.stopPropagation();
+    alert('Всплытие item2');
+});
+item3.addEventListener('click', () => {
+    alert('Погружение item3');
+}, true);
+item3.addEventListener('click', () => {
+    alert('Всплытие item3');
 });
