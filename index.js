@@ -1,149 +1,101 @@
-const but1 = document.getElementById("b1");
-const but2 = document.getElementById("b2");
-const item = document.querySelector(".item");
-let timerId = null;
+const makeSlider = (selector) => {
+    const sliders = document.querySelectorAll(selector);
+    if (!sliders) return;
 
-const timer = () => {
-    if (item.innerHTML === "") {
-        item.innerHTML = 0;
-    } else {
-        item.innerHTML = +item.innerHTML + 1;
-    }
-    timerId = setTimeout(() => timer(), 1000);
-};
+    /**@param {HTMLElement} sliderContainer */
+    const sliderController = (sliderContainer) => {
+        const slides = sliderContainer.querySelector(".slides");
+        if (!slides) return;
+        const next = sliderContainer.querySelector(".next");
+        const prev = sliderContainer.querySelector(".prev");
+        const pagination = sliderContainer.querySelector(".pagination");
+        const paginationItemms = [];
 
-const handler = function () {
-    timerId = setTimeout(() => timer(), 1000);
-    console.log(timerId);
-};
-
-but1.onclick = handler;
-
-but2.addEventListener("click", function () {
-    if (timerId) clearTimeout(timerId);
-});
-// but2.addEventListener("click", () => {
-//     console.log(this);
-// });
-// but2.addEventListener("click", function () {
-//     console.log(this);
-// });
-
-// window.addEventListener('beforeunload', () => {
-//     alert('')
-// });
-
-// but2.removeEventListener('click', )
-
-/**
- * Типы событий
- * Мыши - click, dblclick, onwhell, contextmenu, mouseover, mousedown, mouseup, mousemove
- * Клавиатуры - keyup, keydown, keypress
- * DOM - load, DOMContentLoaded, resize, error, beforeunload/unload
- * Форм и элеметов управления - blur, change, focus, invalid, select, submit, input
- * события CSS
- * Drag and drop
- * События буфера обмена
- * медиа события
- */
-
-document.querySelector("input").addEventListener("focus", () => {
-    console.log("Элемент в фокусе");
-});
-document.querySelector("input").addEventListener("blur", () => {
-    console.log("Элемент потерял фокус");
-});
-
-document.querySelector("input").addEventListener("change", () => {
-    console.log(document.querySelector("input").value);
-});
-
-const input = document.querySelector("input");
-
-input.addEventListener("input", () => {
-    input.value = input.value.toUpperCase();
-});
-
-input.addEventListener("invalid", () => {
-    console.log("Статус инвалид");
-});
-
-document.querySelector("form").addEventListener("submit", (event) => {
-    event.preventDefault();
-    console.log(event);
-    console.log("Валидация формы");
-});
-
-document.body.addEventListener("click", (event) => {
-    console.log(`X: ${event.pageX}, Y: ${event.pageY}`);
-    console.log(`X: ${event.clientX}, Y: ${event.clientY}`);
-});
-
-const createTooltip = () => {
-    const item = document.createElement("div");
-    item.style.cssText = `
-        width: 400px;
-        height: 200px;
-        border: 1px solid;
-        position: absolute;
-        background: #fff;
-    `;
-    item.innerHTML = `
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, corporis?</p>
-        <p>Minima voluptatibus fugit ducimus in magni nam voluptates accusamus minus.</p>
-        <p>Repudiandae in hic consequuntur cum quos sequi, earum laborum atque.</p>
-    `;
-    return item;
-};
-
-const testTooltip = () => {
-    let item = null;
-    const tooltipItem = document.querySelector(".tooltip");
-    const height = window.innerHeight;
-
-    tooltipItem.addEventListener("mouseover", (event) => {
-        item = createTooltip();
-        let pos = event.clientY + 220;
-        // console.log(pos, event.clientY, item);
-        if (pos < height) {
-            item.style.top = `20px`;
-            tooltipItem.append(item);
-        } else {
-            item.style.bottom = `20px`;
-            tooltipItem.append(item);
+        if (pagination) {
+            [...slides.children].forEach((item, i) => {
+                let bullet = document.createElement("span");
+                bullet.classList.add("bullet");
+                if (i === 0) bullet.classList.add("bullet-active");
+                bullet.addEventListener("click", () => bulletHandler(i));
+                paginationItemms.push(bullet);
+                pagination.append(bullet);
+            });
         }
-    });
 
-    tooltipItem.addEventListener("mouseleave", () => {
-        if (item) {
-            item.remove();
-        }
-    });
+        const bulletHandler = (index) => {
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            if (paginationItemms.length > 0) {
+                paginationItemms.forEach((item, i) => {
+                    if (index === i) {
+                        item.classList.add("bullet-active");
+                    } else {
+                        item.classList.remove("bullet-active");
+                    }
+                });
+            }
+        };
+
+        const switchSlide = (event) => {
+            const isNext = event.target.classList.contains("next");
+
+            let x = slides.style.transform || "0"; // slides.style.transform === '' -> x = '0', slides.style.transform === 'translateX(-100%)' -> x = 'translateX(-100%)'
+            x = x.replace("translateX(", "");
+            x = Math.abs(parseInt(x)); // 0, 100, 200, 300, ... 900
+
+            if (isNext) {
+                if (x < (slides.children.length - 1) * 100) {
+                    x += 100; // transform: translateX(-(100 + 100)%)
+                } else {
+                    x = 0;
+                }
+            } else {
+                if (x > 0) {
+                    x -= 100;
+                } else {
+                    x = slides.children.length * 100 - 100;
+                }
+            }
+
+            // if (paginationItemms.length > 0) {
+            //     let marker = x / 100;
+            //     paginationItemms.forEach((item, i) => {
+            //         if (marker === i) {
+            //             item.classList.add("bullet-active");
+            //         } else {
+            //             item.classList.remove("bullet-active");
+            //         }
+            //     });
+            // }
+
+            // slides.style.transform = `translateX(-${x}%)`;
+            bulletHandler(x / 100);
+        };
+
+        next.addEventListener("click", switchSlide);
+        prev.addEventListener("click", switchSlide);
+
+        const timerSwitchSlide = () => {
+            let x = slides.style.transform || "0"; // slides.style.transform === '' -> x = '0', slides.style.transform === 'translateX(-100%)' -> x = 'translateX(-100%)'
+            x = x.replace("translateX(", "");
+            x = Math.abs(parseInt(x)); // 0, 100, 200, 300, ... 900
+
+            if (x < (slides.children.length - 1) * 100) {
+                x += 100; 
+            } else {
+                x = 0;
+            }
+
+            bulletHandler(x / 100);
+
+            setTimeout(timerSwitchSlide, 5000);
+        };
+
+        // setTimeout(timerSwitchSlide, 5000);
+    };
+
+    // console.log(sliders);
+    // console.log([...sliders]);
+    [...sliders].forEach((slider) => sliderController(slider));
 };
 
-testTooltip();
-
-const item1 = document.querySelector('.item1');
-const item2 = document.querySelector('.item2');
-const item3 = document.querySelector('.item3');
-
-item1.addEventListener('click', () => {
-    alert('Погружение item1');
-}, true);
-item1.addEventListener('click', () => {
-    alert('Всплытие item1');
-});
-item2.addEventListener('click', (event) => {
-    // event.stopPropagation();
-    alert('Погружение item2');
-}, true);
-item2.addEventListener('click', (event) => {
-    // event.stopPropagation();
-    alert('Всплытие item2');
-});
-item3.addEventListener('click', () => {
-    alert('Погружение item3');
-}, true);
-item3.addEventListener('click', () => {
-    alert('Всплытие item3');
-});
+makeSlider(".slider__wrapper");
