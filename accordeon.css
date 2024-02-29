@@ -1,0 +1,52 @@
+.accordeon__container{
+    max-width: 700px;
+
+}
+
+.accordeon__item{
+    margin-bottom: 5px;
+}
+
+.accordeon__title{
+    padding: 20px;
+    background: #4b4b4b;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+}
+
+.accordeon__title::after{
+    position: absolute;
+    display: block;
+    content: '';
+    width: 15px;
+    height: 15px;
+    border-bottom: 2px solid #fff;
+    border-right: 2px solid #fff;
+
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    transform-origin: center;
+    transition: transform .3s linear;
+}
+
+
+.accordeon__title.active::after{
+    transform: translateY(-50%) rotate(-135deg);
+}
+
+.accordeon__content{
+    padding: 0;
+    height: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    transition: .3s linear;
+}
+
+.accordeon__content.active{
+    padding: 20px;
+    border-bottom: 1px solid #0000001e;
+    height: fit-content;
+}

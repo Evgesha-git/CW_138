@@ -5,70 +5,45 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>JavaScript</title>
         <link rel="stylesheet" href="./style.css">
-        <link rel="stylesheet" href="./tab.css">
-        <link rel="stylesheet" href="./galery.css">
+        <link rel="stylesheet" href="./accordeon.css">
     </head>
     <body>
-        <section>
+        <section class="accordeon_section">
             <div class="container">
-                <div class="tabs-container">
-                    <div class="tabs">
-                        <div class="tab active" data-tab="1">Tab 1</div>
-                        <div class="tab" data-tab="2">Tab 2</div>
-                        <div class="tab" data-tab="3">Tab 3</div>
-                        <div class="tab" data-tab="4">Tab 4</div>
-                        <div class="tab" data-tab="5">Tab 5</div>
-                    </div>
-                    <div class="contents">
-                        <div class="content active" data-content="1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, at ut. Est ipsum tenetur aliquam fuga ipsam saepe repellendus minus.</div>
-                        <div class="content" data-content="2">Fuga, aspernatur? Voluptates dolore placeat excepturi aperiam, sint numquam tempore repellendus recusandae perspiciatis officia veniam error, corrupti quis quasi. Repudiandae!</div>
-                        <div class="content" data-content="3">Odit, hic maxime? Cum ullam maiores, consequuntur itaque modi tempore nobis, ipsum, eligendi a sit ipsa suscipit distinctio illum ad.</div>
-                        <div class="content" data-content="4">Vel illum sed doloribus omnis provident cupiditate quam temporibus alias nisi cumque impedit eum atque consectetur veritatis laboriosam, at animi!</div>
-                        <div class="content" data-content="5">Eum, modi dolorem doloremque consequuntur fuga sit molestiae delectus sequi? Error quibusdam, ad quos cumque corrupti tempore deserunt ratione voluptate.</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="container">
-                <div class="galery">
-                    <div class="mins">
-                        <a href="https://via.placeholder.com/960/fe11d5"><img src="https://via.placeholder.com/160/fe11d5" alt=""></a>
-                        <a href="https://via.placeholder.com/960/fec1a5"><img src="https://via.placeholder.com/160/fec1a5" alt=""></a>
-                        <a href="https://via.placeholder.com/960/1ec1d5"><img src="https://via.placeholder.com/160/1ec1d5" alt=""></a>
-                        <a href="https://via.placeholder.com/960/fe00d5"><img src="https://via.placeholder.com/160/fe00d5" alt=""></a>
-                        <a href="https://via.placeholder.com/960/fec111"><img src="https://via.placeholder.com/160/fec111" alt=""></a>
-                        <a href="https://via.placeholder.com/960/fec111"><img src="https://via.placeholder.com/160/fec111" alt=""></a>
-                        <a href="https://via.placeholder.com/960/fec111"><img src="https://via.placeholder.com/160/fec111" alt=""></a>
-                        <a href="https://via.placeholder.com/960/fec111"><img src="https://via.placeholder.com/160/fec111" alt=""></a>
-                        <a href="https://via.placeholder.com/960/fec111"><img src="https://via.placeholder.com/160/fec111" alt=""></a>
-                        <a href="https://via.placeholder.com/960/fec111"><img src="https://via.placeholder.com/160/fec111" alt=""></a>
-                        <a href="https://via.placeholder.com/960/fec111"><img src="https://via.placeholder.com/160/fec111" alt=""></a>
-                        <a href="https://via.placeholder.com/960/fec111"><img src="https://via.placeholder.com/160/fec111" alt=""></a>
-                        <a href="https://via.placeholder.com/960/fec111"><img src="https://via.placeholder.com/160/fec111" alt=""></a>
-                        <a href="https://via.placeholder.com/960/fec111"><img src="https://via.placeholder.com/160/fec111" alt=""></a>
-                    </div>
-                    <div class="view-contaner">
-                        <div class="close">X</div>
-                        <div class="img">
-                            <img src="" alt="">
+                <div class="accordeon__container">
+                    <div class="accordeon__item">
+                        <h2 class="accordeon__title active">Accordeon item 1</h2>
+                        <div class="accordeon__content active">
+                            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos, consequuntur.</p>
+                            <p>Cumque blanditiis labore beatae, commodi eum ea voluptas molestiae atque!</p>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-        <section>
-            <div class="container">
-                <div class="todo-container">
-                    <form class="todo-form">
-                        <input type="text" required>
-                        <input type="datetime-local" required>
-                        <button type="submit">Add...</button>
-                    </form>
-                    <div class="todo-items">
-                        <div class="todo-item">
-                            <p class="text">test todo</p>
-                            <p class="timer">Тут будет наш таймер</p>
+                    <div class="accordeon__item">
+                        <h2 class="accordeon__title">Accordeon item 2</h2>
+                        <div class="accordeon__content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, itaque?</p>
+                            <p>Et impedit natus omnis corrupti mollitia inventore voluptatibus tempora quos.</p>
+                        </div>
+                    </div>
+                    <div class="accordeon__item">
+                        <h2 class="accordeon__title">Accordeon item 3</h2>
+                        <div class="accordeon__content">
+                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit, odio?</p>
+                            <p>Sunt fugiat, rerum recusandae excepturi optio consequuntur eveniet iure alias.</p>
+                        </div>
+                    </div>
+                    <div class="accordeon__item">
+                        <h2 class="accordeon__title">Accordeon item 4</h2>
+                        <div class="accordeon__content">
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod, accusamus.</p>
+                            <p>Sapiente adipisci iste qui sit, iure obcaecati ab et odit!</p>
+                        </div>
+                    </div>
+                    <div class="accordeon__item">
+                        <h2 class="accordeon__title">Accordeon item 5</h2>
+                        <div class="accordeon__content">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, asperiores.</p>
+                            <p>Deleniti nulla sit soluta dolor exercitationem tenetur. Velit, sequi error.</p>
                         </div>
                     </div>
                 </div>
@@ -76,6 +51,4 @@
         </section>
     </body>
     <script src="./index.js"></script>
-    <script src="./galery.js"></script>
-    <script src="./todo.js"></script>
 </html>
