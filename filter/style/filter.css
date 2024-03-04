@@ -1,0 +1,56 @@
+.filter{
+    padding: 40px 10px;
+}
+
+.container {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.filter__wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.filter__buttons{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.filter__button{
+    padding: 5px 10px;
+    border: 1px solid #00000080;
+    cursor: pointer;
+}
+
+.filter__button:hover{
+    background: #00000010;
+}
+
+.filter__button.active{
+    background: #00000050;
+}
+
+.filter__cards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.filter__card{
+    padding: 20px;
+    max-width: 250px;
+    border-radius: 20px;
+    box-shadow: 0 0 3px #0002;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.filter__card.hide{
+    display: none;
+}

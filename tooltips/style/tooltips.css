@@ -1,0 +1,22 @@
+.tooltip{
+    position: relative;
+
+}
+
+.tooltip__item {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(105%);
+    padding: 5px;
+    max-width: 250px;
+    width: max-content;
+    box-sizing: border-box;
+    box-shadow: 0 0 3px #0004;
+    border-radius: 5px;
+    background: #fff;
+    color: #0009;
+    font-size: 16px;
+    font-weight: 700;
+    z-index: 2;
+}
