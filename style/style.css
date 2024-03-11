@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input,
+textarea {
+    border: none;
+    box-shadow: 0 0 5px #82828279;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 5px;
+}
+
+textarea {
+    resize: none;
+    height: 100px;
+}
+
+button{
+    font-size: 18px;
+    padding: 10px 20px;
+}
+
+
+
+.notes{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 30px;
+    gap: 10px;
+}
+
+.title{
+    grid-column: span 3;
+    text-align: center;
+}
+
+.item{
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.332);
+    border-radius: 5px;
+    padding: 10px;
+}
