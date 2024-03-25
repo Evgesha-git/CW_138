@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            position: relative;
+        }
+        .container{
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .animate{
+            width: 400px;
+            height: 600px;
+            transition: 1.4s linear;
+            left: 0;
+            top: 0;
+            background: #ff7c7c;
+            position: absolute;
+            transform: translateX(-100%);
+        }
+        .active{
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <button>Open</button>
+        <div class="animate"></div>
+    </div>
+</body>
+<script src="./promises.js"></script>
+</html>
