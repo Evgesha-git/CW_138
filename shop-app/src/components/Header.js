@@ -1,8 +1,14 @@
+import { widget } from "../pages/Cart";
+
 export default class Header {
     constructor() {
         this.header = document.createElement('hreader');
-        this.header.innerHTML = `
-            <div class="container">
+        this.container = document.createElement('div');
+        this.container.classList.add('container');
+        this.widgetContainer = document.createElement('div');
+        this.widgetContainer.classList.add('widget');
+        this.widgetContainer.append(widget);
+        this.container.innerHTML = `
                 <div className="logo"><img src="https://via.placeholder.com/50" alt="logo" /></div>
                 <nav>
                     <ul>
@@ -11,9 +17,10 @@ export default class Header {
                         <li><a href="#About">About</a></li>
                     </ul>
                 </nav>
-                <div className="vidjet">0 | 0</div>
-            </div>
-        `
+        `;
+
+        this.container.append(this.widgetContainer);
+        this.header.append(this.container);
     }
 
     render(){

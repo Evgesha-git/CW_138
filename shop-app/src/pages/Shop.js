@@ -1,5 +1,6 @@
 import '../../style/shop.scss';
 import ShopItem from '../components/ShopItem';
+import Button from '../components/Button';
 import { getData } from '../utils/api';
 
 export default class Shop{
@@ -18,7 +19,7 @@ export default class Shop{
         items.classList.add('items');
 
         data.forEach(data => {
-            const item = new ShopItem(data).render();
+            const item = new ShopItem(data, new Button(data).render()).render();
             items.append(item);
         });
 

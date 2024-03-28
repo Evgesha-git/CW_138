@@ -1,9 +1,10 @@
 import '../../style/shopItem.scss';
 
 export default class ShopItem{
-    constructor (data){
+    constructor (data, button){
         this.item = document.createElement('div');
         this.item.classList.add("shop__item");
+        this.button = button;
         this.data = data;
     }
 
@@ -19,10 +20,10 @@ export default class ShopItem{
         const imgContainer = document.createElement('div');
         imgContainer.classList.add('img__container');
         const imgLinck = document.createElement('a');
-        imgLinck.setAttribute('href', `#product_${this.data.id}`);
+        imgLinck.setAttribute('href', `#Product_${this.data.id}`);
         imgLinck.append(img);
         imgContainer.append(imgLinck);
-        this.item.append(title, imgContainer, price);
+        this.item.append(title, imgContainer, price, this.button);
     }
 
     render(){
